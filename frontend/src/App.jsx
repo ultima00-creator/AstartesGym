@@ -25,14 +25,15 @@ import Library from './views/Library.jsx'
 import Settings from './views/Settings.jsx'
 import Admin from './views/Admin.jsx'
 
-bindUI(useUI)   // lets the shared controls open sheets without importing the store at module scope
+bindUI(useUI)
 
 function applyPrefs(theme, accent) {
   const de = document.documentElement
-  de.dataset.theme = theme === 'light' ? 'light' : 'dark'
-  de.dataset.accent = ACCENTS[accent] ? accent : 'lime'
+  const t = theme === 'marble' ? 'marble' : theme === 'light' ? 'light' : 'dark'
+  de.dataset.theme = t
+  de.dataset.accent = ACCENTS[accent] ? accent : 'gold'
   const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) meta.content = de.dataset.theme === 'light' ? '#f2f2f7' : '#000000'
+  if (meta) meta.content = t === 'marble' ? '#efe8dc' : t === 'light' ? '#f2f2f7' : '#000000'
 }
 
 function Shell() {
@@ -40,14 +41,12 @@ function Shell() {
   const loc = useLocation()
   const { S, user, ready } = useStore()
   const isGuest = useStore(s => s.isGuest())
-  const langV = useLang()   // re-renders the whole shell when the language (pack) changes
+  const langV = useLang()
   useEffect(() => { setNav(navigate) }, [navigate])
   useEffect(() => { applyPrefs(S.theme, S.accent) }, [S.theme, S.accent])
-  useEffect(() => { setLang(S.lang || 'en') }, [S.lang])
-  useEffect(() => { document.documentElement.lang = S.lang || 'en' }, [langV, S.lang])
-  // every tab/route change starts at the top of the page
+  useEffect(() => { setLang(S.lang || 'pt') }, [S.lang])
+  useEffect(() => { document.documentElement.lang = S.lang || 'pt' }, [langV, S.lang])
   useEffect(() => { window.scrollTo(0, 0) }, [loc.pathname])
-  // bound to the workout, not to the route — checking Stats mid-session keeps the screen on
   useWakeLock(!!S.active && S.keepAwake !== false)
 
   const authed = user || isGuest
@@ -61,8 +60,6 @@ function Shell() {
 
   return (
     <>
-      {/* keyed on the route: a view that throws is contained, and switching tabs
-          re-mounts the boundary, so the tab bar is always a way out */}
       <div id="app" className="vfade" key={loc.pathname}>
         <ErrorBoundary>
           {!authed ? <Login /> : (
