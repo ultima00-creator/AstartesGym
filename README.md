@@ -1,5 +1,23 @@
 <div align="center">
 
+# Astartes:Opengym
+
+**Fork do openGym para o Codex:Armamentum.**
+
+Visual de mármore, programa SBD Whitby como plano importável, e as features do tracker original.
+
+<br>
+
+**Base:** [openGym](https://github.com/DuarteSantos8/openGym) (AGPL-3.0) — este repositório é um fork completo.
+
+O nome do repositório no GitHub é `openGym` (dois-pontos não são permitidos). Renomeie em Settings → General se quiser `Astartes-Opengym`.
+
+</div>
+
+---
+
+<div align="center">
+
 <img src="assets/banner.png" alt="openGym" width="720">
 
 <br>
@@ -58,7 +76,7 @@ as a home-screen app, passkey sign-in, offline support, sync across your phone a
 
 - ⚖️ **Body-weight tracking** — interactive chart with a goal line you set, gains/losses colored by whether they move toward it
 - 🏋️ **Weekly plan** — a routine per weekday, over a library of **1,324 exercises** (searchable, with animated demos)
-- 🗓️ **Reschedule any day** — sick, missed a session, or fewer gym days this week? Move a workout to another day without touching your weekly plan
+- 📆 **Reschedule any day** — sick, missed a session, or fewer gym days this week? Move a workout to another day without touching your weekly plan
 - ▶️ **Guided workouts** — it knows what day it is and starts today's session; asks your body weight first, pre-fills your weights from last time, rest timer, PR detection, per-exercise weight tracking
 - ☀️ **The screen stays awake while you train** — no unlocking the phone and finding your place again between every set. On for as long as a workout is running, released the moment you finish it, and switchable off in Settings
 - 🔗 **Supersets** — build them, and log them back-to-back with a rest only after the pair
@@ -88,7 +106,7 @@ as a home-screen app, passkey sign-in, offline support, sync across your phone a
 You need [Docker](https://docs.docker.com/get-docker/) with Compose.
 
 ```bash
-git clone https://github.com/DuarteSantos8/openGym
+git clone https://github.com/ultima00-creator/openGym
 cd openGym
 cp .env.example .env
 docker compose pull   # grab prebuilt images (amd64 + arm64) — skip to build from source instead
@@ -119,16 +137,16 @@ mobile app is the install-and-done flavor.
 ## How it works
 
 ```
-┌─────────────┐        ┌──────────────────────────────┐
+┌─────────────┐        ┌─────────────────────────────┐
 │  Your phone │──HTTPS─▶│  web  (nginx)                │
 │  / laptop   │        │   ├─ serves the built app    │
-└─────────────┘        │   └─ proxies /api ──────────┐│
-                       └──────────────────────────────┘│
+└────────────┘        │   └─ proxies /api ──────────┐│
+                       └─────────────────────────────┘│
                                                         ▼
-                                        ┌──────────────────────────┐
+                                        ┌─────────────────────────┐
                                         │  api  (Node + WebAuthn)  │
                                         │   └─ ./data (JSON files) │
-                                        └──────────────────────────┘
+                                        └─────────────────────────┘
 ```
 
 - **frontend/** — React + Vite (React Router + Zustand), built to static files **inside Docker**
