@@ -1,55 +1,113 @@
 /* Astartes:Opengym — marble light theme
-   Activate with <html data-theme="marble"> or by setting theme to "marble" in the store.
-   Falls back to light if the app only knows light/dark. */
+   Activate with <html data-theme="marble">
+   Cream marble with subtle veining, ink text, gold accents.
+*/
 
-:root[data-theme="marble"],
-:root[data-theme="light"].marble {
-  --bg:        #efe8dc;
+:root[data-theme="marble"] {
+  --bg:        #fbf7f0;
   --bg-el:     #f7f1e8;
-  --surface:   rgba(255,252,247,.82);
+  --surface:   rgba(255,252,247,.88);
   --surface-2: #efe6d8;
   --surface-3: #e6d9c8;
 
   --label:     #2a2218;
-  --label-2:   rgba(42,34,24,.62);
-  --label-3:   rgba(42,34,24,.35);
-  --label-4:   rgba(42,34,24,.18);
+  --label-2:   rgba(42,34,24,.68);
+  --label-3:   rgba(42,34,24,.42);
+  --label-4:   rgba(42,34,24,.22);
 
-  --sep:       rgba(138,106,58,.28);
-  --sep-op:    rgba(138,106,58,.18);
+  --sep:       rgba(138,106,58,.32);
+  --sep-op:    rgba(138,106,58,.20);
 
   --acc:       #8a6a3a;
   --acc-2:     #6b5228;
-  --on-acc:    #f7f1e8;
-  --acc-soft:  rgba(138,106,58,.14);
-  --acc-line:  rgba(138,106,58,.35);
+  --on-acc:    #fbf7f0;
+  --acc-soft:  rgba(138,106,58,.16);
+  --acc-line:  rgba(138,106,58,.40);
 
   --gold:      #c4a36a;
+
+  /* system palette softened for marble */
+  --blue:#3a6a8a; --green:#4a7a5a; --red:#a45a4a; --orange:#b07a3a;
+  --yellow:#c4a36a; --teal:#3a7a7a; --indigo:#5a5a8a; --pink:#a45a7a;
+  --purple:#7a5a8a; --mint:#4a8a7a; --brown:#8a6a3a; --grey:#6a6258;
 }
 
-:root[data-theme="marble"] body,
-:root[data-theme="light"].marble body {
+:root[data-theme="marble"] body {
   background:
-    radial-gradient(ellipse at 18% 8%, rgba(255,255,255,.72), transparent 36%),
-    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 32%),
-    radial-gradient(ellipse at 40% 78%, rgba(210,196,176,.28), transparent 42%),
-    repeating-linear-gradient(118deg, rgba(120,96,72,.045) 0 1px, transparent 1px 13px),
-    repeating-linear-gradient(28deg, rgba(90,70,50,.03) 0 1px, transparent 1px 18px),
-    linear-gradient(165deg, #fbf7f0 0%, #efe6d8 46%, #e6d9c8 100%);
+    radial-gradient(ellipse at 18% 8%, rgba(255,255,255,.85), transparent 38%),
+    radial-gradient(ellipse at 82% 18%, rgba(255,255,255,.45), transparent 34%),
+    radial-gradient(ellipse at 35% 82%, rgba(200,180,150,.22), transparent 48%),
+    repeating-linear-gradient(118deg, rgba(110,85,60,.055) 0 1.2px, transparent 1.2px 14px),
+    repeating-linear-gradient(28deg, rgba(90,70,48,.035) 0 1px, transparent 1px 20px),
+    linear-gradient(168deg, #fbf7f0 0%, #f3eadc 48%, #e9ddd0 100%);
   background-attachment: fixed;
   color: var(--label);
 }
 
-:root[data-theme="marble"] #tabbar,
-:root[data-theme="light"].marble #tabbar {
-  background: rgba(247,241,232,.78);
+:root[data-theme="marble"] #tabbar {
+  background: rgba(247,241,232,.82);
+  border-top: 0.5px solid rgba(138,106,58,.25);
 }
 
 :root[data-theme="marble"] .card,
 :root[data-theme="marble"] .sect-b,
 :root[data-theme="marble"] .item {
-  background: rgba(255,252,247,.78);
+  background: rgba(255,252,247,.82);
+  border: 1px solid rgba(138,106,58,.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 2px rgba(42,34,24,.04);
+}
+
+:root[data-theme="marble"] .btn.primary {
+  background: var(--acc);
+  color: var(--on-acc);
+  box-shadow: 0 1px 3px rgba(138,106,58,.25);
+}
+
+:root[data-theme="marble"] .btn.tinted {
+  background: var(--acc-soft);
+  color: var(--acc);
+}
+
+:root[data-theme="marble"] .chip.on {
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+:root[data-theme="marble"] .iconbtn {
+  background: rgba(255,252,247,.7);
   border: 1px solid rgba(138,106,58,.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+}
+
+:root[data-theme="marble"] .field,
+:root[data-theme="marble"] .input,
+:root[data-theme="marble"] input,
+:root[data-theme="marble"] select,
+:root[data-theme="marble"] textarea {
+  background: rgba(255,252,247,.75);
+  border: 1px solid rgba(138,106,58,.22);
+  color: var(--label);
+}
+
+:root[data-theme="marble"] .lrow-i {
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+:root[data-theme="marble"] #tabbar button.start .cir {
+  background: var(--acc);
+  color: var(--on-acc);
+  box-shadow: 0 4px 14px -2px rgba(138,106,58,.45);
+}
+
+/* subtle gold highlight on active elements */
+:root[data-theme="marble"] .wday.today .num {
+  background: var(--acc);
+  color: var(--on-acc);
+}
+
+:root[data-theme="marble"] a,
+:root[data-theme="marble"] .accent {
+  color: var(--acc);
 }
